@@ -1,8 +1,11 @@
 import { StyleSheet } from 'react-native';
 
+import { ScaledSize } from '@/src/common/theme/sizes';
+
 const styles = StyleSheet.create({
   container: {
-    ...StyleSheet.absoluteFill,
+    flex: 1,
+    marginHorizontal: ScaledSize.SIZE_20,
   },
 });
 

@@ -1,5 +1,6 @@
 import { I18nManager, StyleSheet, TextStyle } from 'react-native';
 
+import { Colors } from '@/src/common/theme/colors';
 import {
   FONT_TYPE_MEDIUM,
   FONT_TYPE_REGULAR,
@@ -10,7 +11,7 @@ import { ScaledSize } from '@/src/common/theme/sizes';
 import { scaledFontSize } from '@/src/common/utils/scaling.util';
 
 export interface Props {
-  color?: TextStyle['color'];
+  color?: Colors;
   align?: TextStyle['textAlign'];
   weight?: TextStyle['fontWeight'];
   useLineHeight?: boolean;
@@ -51,7 +52,7 @@ const styles = ({
     //Body
     bodyLarge: {
       fontSize: ScaledSize.SIZE_16,
-      fontFamily: getFont(FONT_TYPE_REGULAR),
+      fontFamily: getFont(FONT_TYPE_MEDIUM),
       lineHeight: useLineHeight
         ? scaledFontSize(24, DEFAULT_LINE_HEIGHT_SCALING_FACTOR)
         : undefined,

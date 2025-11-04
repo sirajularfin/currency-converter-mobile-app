@@ -3,7 +3,7 @@ import { Text, TextProps } from 'react-native';
 
 import styles, { Props as StylesProps } from './styles';
 
-enum Variant {
+export enum Variant {
   headingLarge = 'headingLarge',
   headingMedium = 'headingMedium',
   headingSmall = 'headingSmall',

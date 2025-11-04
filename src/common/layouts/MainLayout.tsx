@@ -2,14 +2,14 @@ import React, { PropsWithChildren } from 'react';
 import { StatusBar, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Colors } from '@/src/common/theme/colors';
 import { ScaledSize } from '@/src/common/theme/sizes';
 import { DEFAULT_VALUE_ZERO } from '@/src/common/types/constants';
+import { Colors } from '../theme/colors';
 import styles from './styles';
 
 interface IProps {
   headerMargin?: number;
-  backgroundColor?: keyof typeof Colors;
+  backgroundColor?: Colors;
   enableStatusBar?: boolean;
   statusBarStyle?: 'light-content' | 'dark-content';
   statusBarBackgroundColor?: string;

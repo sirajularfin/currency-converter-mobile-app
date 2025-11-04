@@ -1,6 +1,11 @@
+import {
+  BottomTabBar,
+  BottomTabBarButtonProps,
+  BottomTabBarProps,
+} from '@react-navigation/bottom-tabs';
 import { RouteProp } from '@react-navigation/native';
 import React from 'react';
-import { Pressable } from 'react-native';
+import { Pressable, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -11,7 +16,6 @@ import { API_ROUTES, RootStackParamList, Tab } from '@/src/navigation/types';
 import HistoryScreen from '@/src/screens/History/History';
 import HomeScreen from '@/src/screens/Home/Home';
 import ManageCurrenciesScreen from '@/src/screens/ManageCurrencies/ManageCurrencies';
-import { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
 import styles from './styles';
 
 const BottomTabs: React.FC = () => {
@@ -19,12 +23,25 @@ const BottomTabs: React.FC = () => {
 
   const renderBackground = () => (
     <LinearGradient
-      colors={[Colors.indigo[800](), Colors.blue[700]()]}
+      colors={[Colors.INDIGO_800, Colors.BLUE_700]}
       start={{ x: 1, y: 0.5 }}
       end={{ x: 0, y: 0.5 }}
       style={styles.background}
     />
   );
+
+  const renderTabBar = (props: BottomTabBarProps) => {
+    return (
+      <View
+        style={[
+          styles.container,
+          { paddingBottom: bottom ? bottom : ScaledSize.SIZE_15 },
+        ]}
+      >
+        <BottomTabBar {...props} />
+      </View>
+    );
+  };
 
   const renderTabButton = (props: Omit<BottomTabBarButtonProps, 'ref'>) => {
     const { style, ...rest } = props;
@@ -34,7 +51,7 @@ const BottomTabs: React.FC = () => {
           style,
           {
             // Adds a slight scale effect on press
-            transform: [{ scale: pressed ? 1.05 : 1 }],
+            transform: [{ scale: pressed ? 0.96 : 1 }],
           },
         ]}
         {...rest}
@@ -46,7 +63,7 @@ const BottomTabs: React.FC = () => {
     route: RouteProp<RootStackParamList, keyof RootStackParamList>,
     focused: boolean,
   ) => {
-    const iconColor = focused ? Colors.white() : Colors.indigo[200]();
+    const iconColor = focused ? Colors.WHITE : Colors.INDIGO_200;
     const iconMap: {
       [key: string]: React.FC<{ color: string }>;
     } = {
@@ -60,16 +77,14 @@ const BottomTabs: React.FC = () => {
 
   return (
     <Tab.Navigator
+      tabBar={renderTabBar}
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel: true,
-        tabBarStyle: {
-          ...styles.tabBar,
-          marginBottom: bottom > 0 ? bottom : ScaledSize.SIZE_15,
-        },
+        tabBarStyle: styles.tabBar,
         tabBarLabelStyle: styles.tabBarLabel,
-        tabBarActiveTintColor: Colors.white(),
-        tabBarInactiveTintColor: Colors.indigo[200](),
+        tabBarActiveTintColor: Colors.WHITE,
+        tabBarInactiveTintColor: Colors.INDIGO_200,
         tabBarAccessibilityLabel: route.name,
         tabBarButtonTestID: `${route.name}-tab-button`,
         tabBarBackground: renderBackground,
