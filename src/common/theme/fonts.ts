@@ -1,4 +1,4 @@
-import { isIos } from '../utils/Device.util';
+import { isIos } from '@/src/common/utils/device.util';
 
 export const FONT_TYPE_BLACK = 'Black';
 export const FONT_TYPE_BOLD = 'Bold';

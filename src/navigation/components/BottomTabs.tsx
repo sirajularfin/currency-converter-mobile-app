@@ -23,7 +23,7 @@ export default function BottomTabs() {
     route: RouteProp<RootStackParamList, keyof RootStackParamList>,
     focused: boolean,
   ) => {
-    const iconColor = focused ? Colors.white() : Colors.indigo[200]();
+    const iconColor = focused ? Colors.white() : Colors.indigo[100]();
     const iconMap: {
       [key: string]: React.FC<{ color: string }>;
     } = {
@@ -40,9 +40,13 @@ export default function BottomTabs() {
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel: true,
-        tabBarBackground: renderBackground,
         tabBarStyle: styles.tabBar,
         tabBarLabelStyle: styles.tabBarLabel,
+        tabBarActiveTintColor: Colors.white(),
+        tabBarInactiveTintColor: Colors.indigo[100](),
+        tabBarAccessibilityLabel: route.name,
+        tabBarButtonTestID: `${route.name}-tab-button`,
+        tabBarBackground: renderBackground,
         tabBarIcon: ({ focused }) => renderTabBarIcon(route, focused),
       })}
     >
