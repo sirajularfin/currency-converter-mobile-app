@@ -33,6 +33,7 @@ const BottomTabs: React.FC = () => {
         style={({ pressed }) => [
           style,
           {
+            // Adds a slight scale effect on press
             transform: [{ scale: pressed ? 1.05 : 1 }],
           },
         ]}

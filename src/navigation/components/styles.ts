@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { Colors } from '@/src/common/theme/colors';
-import { FONT_TYPE_MEDIUM, getFont } from '@/src/common/theme/fonts';
+import { FONT_TYPE_REGULAR, getFont } from '@/src/common/theme/fonts';
 import { ScaledSize, Size } from '@/src/common/theme/sizes';
 
 const styles = StyleSheet.create({
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     shadowRadius: Size.SIZE_2,
   },
   tabBarLabel: {
-    fontFamily: getFont(FONT_TYPE_MEDIUM),
+    fontFamily: getFont(FONT_TYPE_REGULAR),
     fontSize: ScaledSize.SIZE_12,
   },
 });
