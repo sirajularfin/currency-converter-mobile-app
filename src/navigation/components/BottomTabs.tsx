@@ -1,16 +1,24 @@
 import { RouteProp } from '@react-navigation/native';
 import React from 'react';
+import LinearGradient from 'react-native-linear-gradient';
 
-import { HistoryIcon, HomeIcon, ManageCurrencyIcon } from '../../assets';
-import { Colors } from '../../common/theme/colors';
-import HistoryScreen from '../../screens/History/History';
-import HomeScreen from '../../screens/Home/Home';
-import ManageCurrenciesScreen from '../../screens/ManageCurrencies/ManageCurrencies';
-import { API_ROUTES, RootStackParamList, Tab } from '../types';
+import { HistoryIcon, HomeIcon, ManageCurrencyIcon } from '@/src/assets';
+import { Colors } from '@/src/common/theme/colors';
+import { API_ROUTES, RootStackParamList, Tab } from '@/src/navigation/types';
+import HistoryScreen from '@/src/screens/History/History';
+import HomeScreen from '@/src/screens/Home/Home';
+import ManageCurrenciesScreen from '@/src/screens/ManageCurrencies/ManageCurrencies';
 import styles from './styles';
 
 export default function BottomTabs() {
-
+  const renderBackground = () => (
+    <LinearGradient
+      colors={[Colors.indigo[800](), Colors.blue[700]()]}
+      start={{ x: 1, y: 0.5 }}
+      end={{ x: 0, y: 0.5 }}
+      style={styles.background}
+    />
+  );
   const renderTabBarIcon = (
     route: RouteProp<RootStackParamList, keyof RootStackParamList>,
     focused: boolean,
@@ -32,8 +40,7 @@ export default function BottomTabs() {
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel: true,
-        tabBarActiveTintColor: '#007AFF',
-        tabBarInactiveTintColor: '#8E8E93',
+        tabBarBackground: renderBackground,
         tabBarStyle: styles.tabBar,
         tabBarLabelStyle: styles.tabBarLabel,
         tabBarIcon: ({ focused }) => renderTabBarIcon(route, focused),
