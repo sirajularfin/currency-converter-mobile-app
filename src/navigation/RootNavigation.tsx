@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 
-import BottomTabs from './components/BottomTabs';
+import BottomTabs from '@/src/navigation/components/BottomTabs';
 import { API_ROUTES, navigationRef, Stack } from './types';
 
 const RootNavigation = () => {
