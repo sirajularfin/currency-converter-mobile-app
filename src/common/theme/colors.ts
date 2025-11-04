@@ -7,6 +7,7 @@ const generateColor = (colorHex: string) => {
 };
 
 export const Colors = {
+  transparent: 'transparent',
   black: generateColor('#000000'),
   white: generateColor('#FFFFFF'),
   blue: {

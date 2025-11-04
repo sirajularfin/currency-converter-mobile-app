@@ -4,10 +4,12 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import { HistoryIcon, HomeIcon, ManageCurrencyIcon } from '@/src/assets';
 import { Colors } from '@/src/common/theme/colors';
+import { ScaledSize } from '@/src/common/theme/sizes';
 import { API_ROUTES, RootStackParamList, Tab } from '@/src/navigation/types';
 import HistoryScreen from '@/src/screens/History/History';
 import HomeScreen from '@/src/screens/Home/Home';
 import ManageCurrenciesScreen from '@/src/screens/ManageCurrencies/ManageCurrencies';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styles from './styles';
 
 export default function BottomTabs() {
@@ -23,7 +25,7 @@ export default function BottomTabs() {
     route: RouteProp<RootStackParamList, keyof RootStackParamList>,
     focused: boolean,
   ) => {
-    const iconColor = focused ? Colors.white() : Colors.indigo[100]();
+    const iconColor = focused ? Colors.white() : Colors.indigo[200]();
     const iconMap: {
       [key: string]: React.FC<{ color: string }>;
     } = {
@@ -35,15 +37,20 @@ export default function BottomTabs() {
     return IconComponent ? <IconComponent color={iconColor} /> : null;
   };
 
+  const { bottom } = useSafeAreaInsets();
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel: true,
-        tabBarStyle: styles.tabBar,
+        tabBarStyle: {
+          ...styles.tabBar,
+          marginBottom: bottom > 0 ? bottom : ScaledSize.SIZE_15,
+        },
         tabBarLabelStyle: styles.tabBarLabel,
         tabBarActiveTintColor: Colors.white(),
-        tabBarInactiveTintColor: Colors.indigo[100](),
+        tabBarInactiveTintColor: Colors.indigo[200](),
         tabBarAccessibilityLabel: route.name,
         tabBarButtonTestID: `${route.name}-tab-button`,
         tabBarBackground: renderBackground,
@@ -61,7 +68,7 @@ export default function BottomTabs() {
         name={API_ROUTES.MANAGE_CURRENCIES}
         component={ManageCurrenciesScreen}
         options={{
-          tabBarLabel: 'Manage Currencies',
+          tabBarLabel: 'Manage Rates',
         }}
       />
       <Tab.Screen
