@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 
-import { NavigationContainer } from '@react-navigation/native';
 import { StrictMode } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -10,9 +9,7 @@ function App() {
   return (
     <StrictMode>
       <SafeAreaProvider>
-        <NavigationContainer>
-          <RootNavigation />
-        </NavigationContainer>
+        <RootNavigation />
       </SafeAreaProvider>
     </StrictMode>
   );

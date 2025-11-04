@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     borderTopColor: '#ddd',
     height: 60,
     paddingBottom: 8,
+    cursor: 'pointer',
   },
   tabBarLabel: {
     fontSize: 12,

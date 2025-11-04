@@ -6,12 +6,14 @@ import {
 } from '@react-navigation/native-stack';
 
 export enum API_ROUTES {
+  BOTTOM_TABS = 'BottomTabs',
   HOME = 'HomeScreen',
   HISTORY = 'HistoryScreen',
   MANAGE_CURRENCIES = 'ManageCurrenciesScreen',
 }
 
 export type RootStackParamList = {
+  [API_ROUTES.BOTTOM_TABS]: undefined;
   [API_ROUTES.HOME]: undefined;
   [API_ROUTES.HISTORY]: undefined;
   [API_ROUTES.MANAGE_CURRENCIES]: undefined;

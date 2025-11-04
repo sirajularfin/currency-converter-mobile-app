@@ -1,15 +1,41 @@
+import { RouteProp } from '@react-navigation/native';
 import React from 'react';
 
+import { HistoryIcon, HomeIcon, ManageCurrencyIcon } from '../../assets';
+import { Colors } from '../../common/theme/colors';
 import HistoryScreen from '../../screens/History/History';
 import HomeScreen from '../../screens/Home/Home';
 import ManageCurrenciesScreen from '../../screens/ManageCurrencies/ManageCurrencies';
-import { API_ROUTES, Tab } from '../types';
+import { API_ROUTES, RootStackParamList, Tab } from '../types';
 import styles from './styles';
 
 export default function BottomTabs() {
-  const renderTabBarIcon = (routeName: string, focused: boolean) => {
-    // You can customize icons based on routeName and focused state
-    return null; // Placeholder for icon component
+  const renderTabBarIcon = (
+    route: RouteProp<RootStackParamList, keyof RootStackParamList>,
+    focused: boolean,
+  ) => {
+    switch (route.name) {
+      case API_ROUTES.HOME:
+        return focused ? (
+          <HomeIcon color={Colors.white()} />
+        ) : (
+          <HomeIcon color={Colors.indigo[200]()} />
+        );
+      case API_ROUTES.HISTORY:
+        return focused ? (
+          <HistoryIcon color={Colors.white()} />
+        ) : (
+          <HistoryIcon color={Colors.indigo[200]()} />
+        );
+      case API_ROUTES.MANAGE_CURRENCIES:
+        return focused ? (
+          <ManageCurrencyIcon color={Colors.white()} />
+        ) : (
+          <ManageCurrencyIcon color={Colors.indigo[200]()} />
+        );
+      default:
+        return null;
+    }
   };
 
   return (
@@ -21,14 +47,29 @@ export default function BottomTabs() {
         tabBarInactiveTintColor: '#8E8E93',
         tabBarStyle: styles.tabBar,
         tabBarLabelStyle: styles.tabBarLabel,
-        tabBarIcon: ({ focused }) => renderTabBarIcon(route.name, focused),
+        tabBarIcon: ({ focused }) => renderTabBarIcon(route, focused),
       })}
     >
-      <Tab.Screen name={API_ROUTES.HOME} component={HomeScreen} />
-      <Tab.Screen name={API_ROUTES.HISTORY} component={HistoryScreen} />
+      <Tab.Screen
+        name={API_ROUTES.HOME}
+        component={HomeScreen}
+        options={{
+          tabBarLabel: 'Home',
+        }}
+      />
       <Tab.Screen
         name={API_ROUTES.MANAGE_CURRENCIES}
         component={ManageCurrenciesScreen}
+        options={{
+          tabBarLabel: 'Manage Currencies',
+        }}
+      />
+      <Tab.Screen
+        name={API_ROUTES.HISTORY}
+        component={HistoryScreen}
+        options={{
+          tabBarLabel: 'History',
+        }}
       />
     </Tab.Navigator>
   );
