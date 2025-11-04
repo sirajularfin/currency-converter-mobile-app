@@ -1,6 +1,8 @@
 import { RouteProp } from '@react-navigation/native';
 import React from 'react';
+import { Pressable } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { HistoryIcon, HomeIcon, ManageCurrencyIcon } from '@/src/assets';
 import { Colors } from '@/src/common/theme/colors';
@@ -9,10 +11,12 @@ import { API_ROUTES, RootStackParamList, Tab } from '@/src/navigation/types';
 import HistoryScreen from '@/src/screens/History/History';
 import HomeScreen from '@/src/screens/Home/Home';
 import ManageCurrenciesScreen from '@/src/screens/ManageCurrencies/ManageCurrencies';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
 import styles from './styles';
 
-export default function BottomTabs() {
+const BottomTabs: React.FC = () => {
+  const { bottom } = useSafeAreaInsets();
+
   const renderBackground = () => (
     <LinearGradient
       colors={[Colors.indigo[800](), Colors.blue[700]()]}
@@ -21,6 +25,22 @@ export default function BottomTabs() {
       style={styles.background}
     />
   );
+
+  const renderTabButton = (props: Omit<BottomTabBarButtonProps, 'ref'>) => {
+    const { style, ...rest } = props;
+    return (
+      <Pressable
+        style={({ pressed }) => [
+          style,
+          {
+            transform: [{ scale: pressed ? 1.05 : 1 }],
+          },
+        ]}
+        {...rest}
+      />
+    );
+  };
+
   const renderTabBarIcon = (
     route: RouteProp<RootStackParamList, keyof RootStackParamList>,
     focused: boolean,
@@ -36,8 +56,6 @@ export default function BottomTabs() {
     const IconComponent = iconMap[route.name];
     return IconComponent ? <IconComponent color={iconColor} /> : null;
   };
-
-  const { bottom } = useSafeAreaInsets();
 
   return (
     <Tab.Navigator
@@ -55,6 +73,7 @@ export default function BottomTabs() {
         tabBarButtonTestID: `${route.name}-tab-button`,
         tabBarBackground: renderBackground,
         tabBarIcon: ({ focused }) => renderTabBarIcon(route, focused),
+        tabBarButton: renderTabButton,
       })}
     >
       <Tab.Screen
@@ -80,4 +99,6 @@ export default function BottomTabs() {
       />
     </Tab.Navigator>
   );
-}
+};
+
+export default BottomTabs;
