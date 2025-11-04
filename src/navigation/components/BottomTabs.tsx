@@ -10,32 +10,21 @@ import { API_ROUTES, RootStackParamList, Tab } from '../types';
 import styles from './styles';
 
 export default function BottomTabs() {
+
   const renderTabBarIcon = (
     route: RouteProp<RootStackParamList, keyof RootStackParamList>,
     focused: boolean,
   ) => {
-    switch (route.name) {
-      case API_ROUTES.HOME:
-        return focused ? (
-          <HomeIcon color={Colors.white()} />
-        ) : (
-          <HomeIcon color={Colors.indigo[200]()} />
-        );
-      case API_ROUTES.HISTORY:
-        return focused ? (
-          <HistoryIcon color={Colors.white()} />
-        ) : (
-          <HistoryIcon color={Colors.indigo[200]()} />
-        );
-      case API_ROUTES.MANAGE_CURRENCIES:
-        return focused ? (
-          <ManageCurrencyIcon color={Colors.white()} />
-        ) : (
-          <ManageCurrencyIcon color={Colors.indigo[200]()} />
-        );
-      default:
-        return null;
-    }
+    const iconColor = focused ? Colors.white() : Colors.indigo[200]();
+    const iconMap: {
+      [key: string]: React.FC<{ color: string }>;
+    } = {
+      [API_ROUTES.HOME]: HomeIcon,
+      [API_ROUTES.HISTORY]: HistoryIcon,
+      [API_ROUTES.MANAGE_CURRENCIES]: ManageCurrencyIcon,
+    };
+    const IconComponent = iconMap[route.name];
+    return IconComponent ? <IconComponent color={iconColor} /> : null;
   };
 
   return (
