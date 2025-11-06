@@ -162,7 +162,6 @@ const styles = ({
       lineHeight: useLineHeight
         ? scaledFontSize(16, DEFAULT_LINE_HEIGHT_SCALING_FACTOR)
         : undefined,
-      letterSpacing: 0.4,
     },
 
     // Overline - Small uppercase labels

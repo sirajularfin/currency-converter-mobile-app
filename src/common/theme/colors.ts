@@ -1,6 +1,7 @@
 export enum Colors {
   TRANSPARENT = 'transparent',
   BLACK = '#000000',
+  BLACK_OPACITY_50 = 'rgba(0, 0, 0, 0.5)',
   WHITE = '#FFFFFF',
 
   // Blue Shades
