@@ -19,8 +19,7 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({
   ...props
 }) => {
   const { top } = useSafeAreaInsets();
-  const finalHeaderPadding =
-    top > DEFAULT_VALUE_ZERO ? top + headerMargin : headerMargin;
+  const finalHeaderPadding = top > DEFAULT_VALUE_ZERO ? top : headerMargin;
 
   changeNavigationBarColor(String(props.backgroundColor), true);
 

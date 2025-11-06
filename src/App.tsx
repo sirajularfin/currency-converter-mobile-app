@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import RootNavigation from './navigation/RootNavigation';
+import RootNavigation from '@/src/navigation/RootNavigation';
 
 function App() {
   return (
