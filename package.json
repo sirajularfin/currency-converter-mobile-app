@@ -9,7 +9,7 @@
     "clean:package": "rm -rf node_modules && npm install",
     "clean:ios": "rm -rf ios/build ios/Pods ios/Podfile.lock node_modules && rm -rf ~/Library/Developer/Xcode/DerivedData/* && npm install",
     "clean:android": "rm -rf android/app/build android/build node_modules && npm install",
-    "clean:final": "rm -rf android/app/build android/build ios/build ios/Pods ios/Podfile.lock node_modules && rm -rf ~/Library/Developer/Xcode/DerivedData/* && npm install",
+    "clean:final": "npm cache clean --force && rm -rf android/app/build android/build ios/build ios/Pods ios/Podfile.lock node_modules && rm -rf ~/Library/Developer/Xcode/DerivedData/* && npm install",
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
