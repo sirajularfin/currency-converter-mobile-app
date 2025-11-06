@@ -4,8 +4,12 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "android:dev": "cd android && ./gradlew assembleDebug && cd ..",
+    "android:release": "cd android && ./gradlew assembleRelease && cd ..",
     "pod": "cd ios && pod install && cd ..",
     "ios": "react-native run-ios --simulator='iPhone 16 Pro Max'",
+    "ios:dev": "react-native bundle --entry-file index.js --platform ios --dev true --bundle-output ios/main.jsbundle --assets-dest ios && react-native run-ios --simulator='iPhone 16 Pro Max' --configuration Debug",
+    "ios:release": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios && react-native run-ios --configuration Release",
     "clean:package": "rm -rf node_modules && npm install",
     "clean:ios": "rm -rf ios/build ios/Pods ios/Podfile.lock node_modules && rm -rf ~/Library/Developer/Xcode/DerivedData/* && npm install",
     "clean:android": "rm -rf android/app/build android/build node_modules && npm install",
