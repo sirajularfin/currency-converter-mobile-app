@@ -4,15 +4,23 @@ import { Text, TextProps } from 'react-native';
 import styles, { Props as StylesProps } from './styles';
 
 export enum Variant {
+  displayLarge = 'displayLarge',
+  displayMedium = 'displayMedium',
+  displaySmall = 'displaySmall',
   headingLarge = 'headingLarge',
   headingMedium = 'headingMedium',
   headingSmall = 'headingSmall',
+  titleLarge = 'titleLarge',
+  titleMedium = 'titleMedium',
+  titleSmall = 'titleSmall',
   bodyLarge = 'bodyLarge',
   bodyMedium = 'bodyMedium',
   bodySmall = 'bodySmall',
   labelLarge = 'labelLarge',
   labelMedium = 'labelMedium',
   labelSmall = 'labelSmall',
+  caption = 'caption',
+  overline = 'overline',
 }
 
 export interface Props
