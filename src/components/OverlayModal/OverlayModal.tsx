@@ -14,7 +14,15 @@ const OverlayModal: React.FC<PropsWithChildren<IProps>> = ({
   const { bottom } = useSafeAreaInsets();
 
   return (
-    <Modal transparent animationType="slide" statusBarTranslucent {...props}>
+    <Modal
+      transparent
+      animationType="slide"
+      statusBarTranslucent
+      navigationBarTranslucent
+      allowSwipeDismissal
+      testID="overlay-modal"
+      {...props}
+    >
       <TouchableWithoutFeedback onPress={props.onRequestClose}>
         <View style={styles.overlay}>
           <TouchableWithoutFeedback onPress={e => e.stopPropagation()}>
