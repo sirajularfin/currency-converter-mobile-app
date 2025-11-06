@@ -6,6 +6,7 @@
     "android": "react-native run-android",
     "pod": "cd ios && pod install && cd ..",
     "ios": "react-native run-ios",
+    "clean:build": "rm -rf android/app/build ios/build android/build node_modules && npm install",
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
