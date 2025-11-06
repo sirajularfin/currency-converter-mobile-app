@@ -5,6 +5,7 @@ import { ScaledSize } from '@/src/common/theme/sizes';
 
 const styles = StyleSheet.create({
   card: {
+    overflow: 'hidden',
     borderRadius: ScaledSize.SIZE_8,
 
     shadowColor: Colors.BLACK,

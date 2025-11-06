@@ -1,16 +1,17 @@
-import 'react-native-gesture-handler';
-
-import { StrictMode } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { StrictMode } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import RootNavigation from './navigation/RootNavigation';
 
 function App() {
   return (
     <StrictMode>
-      <SafeAreaProvider>
-        <RootNavigation />
-      </SafeAreaProvider>
+      <GestureHandlerRootView>
+        <SafeAreaProvider>
+          <RootNavigation />
+        </SafeAreaProvider>
+      </GestureHandlerRootView>
     </StrictMode>
   );
 }
