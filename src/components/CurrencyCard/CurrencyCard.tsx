@@ -8,6 +8,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { Colors } from '@/src/common/theme/colors';
+import logger from '@/src/common/utils/logger.util';
 import Typography, { Variant } from '@/src/components/Typography/Typography';
 import styles from './styles';
 
@@ -56,6 +57,10 @@ const CurrencyCard: React.FC<IProps> = ({
         translateX.value = withTiming(-500, { duration: 300 }, () => {
           if (onDelete) {
             onDelete();
+            logger(
+              `[CurrencyCard] Deleted ${currencyCode}${amount} on swipe`,
+              'info',
+            );
           }
         });
       } else {
