@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { StatusBar, StatusBarProps, View } from 'react-native';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ScaledSize } from '@/src/common/theme/sizes';
@@ -20,6 +21,8 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({
   const { top } = useSafeAreaInsets();
   const finalHeaderPadding =
     top > DEFAULT_VALUE_ZERO ? top + headerMargin : headerMargin;
+
+  changeNavigationBarColor(String(props.backgroundColor), true);
 
   return (
     <View
