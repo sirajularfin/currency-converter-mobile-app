@@ -85,6 +85,7 @@ const CurrencyInput: React.FC<IProps> = ({
               { paddingBottom: bottom + ScaledSize.SIZE_20 },
             ]}
           >
+            <View style={styles.dropdownIndicator} />
             <FlatList
               data={countries}
               keyExtractor={item => item.code}

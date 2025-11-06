@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   flagImage: {
     width: ScaledSize.SIZE_40,
     height: ScaledSize.SIZE_27,
+    borderRadius: ScaledSize.SIZE_4,
   },
   hintText: {
     marginTop: ScaledSize.SIZE_2,
@@ -50,6 +51,14 @@ const styles = StyleSheet.create({
     paddingTop: ScaledSize.SIZE_30,
     paddingHorizontal: ScaledSize.SIZE_20,
     width: '100%',
+  },
+  dropdownIndicator: {
+    backgroundColor: Colors.GREY_400,
+    width: ScaledSize.SIZE_40,
+    height: ScaledSize.SIZE_4,
+    alignSelf: 'center',
+    borderRadius: ScaledSize.SIZE_2,
+    marginBottom: ScaledSize.SIZE_20,
   },
   dropdownItem: {
     alignItems: 'center',
