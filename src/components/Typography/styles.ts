@@ -79,10 +79,10 @@ const styles = ({
 
     // Title - Subsection headers
     titleLarge: {
-      fontSize: ScaledSize.SIZE_22,
+      fontSize: ScaledSize.SIZE_20,
       fontFamily: getFont(FONT_TYPE_SEMIBOLD),
       lineHeight: useLineHeight
-        ? scaledFontSize(28, DEFAULT_LINE_HEIGHT_SCALING_FACTOR)
+        ? scaledFontSize(26, DEFAULT_LINE_HEIGHT_SCALING_FACTOR)
         : undefined,
       letterSpacing: 0,
     },
@@ -179,6 +179,7 @@ const styles = ({
     shared: {
       color: color,
       textAlign: align,
+      flexShrink: 1,
     },
     weight: {
       fontWeight: weight,
