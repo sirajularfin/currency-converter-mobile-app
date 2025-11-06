@@ -1,43 +1,38 @@
 import React, { PropsWithChildren } from 'react';
-import { StatusBar, View } from 'react-native';
+import { StatusBar, StatusBarProps, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ScaledSize } from '@/src/common/theme/sizes';
 import { DEFAULT_VALUE_ZERO } from '@/src/common/types/constants';
-import { Colors } from '../theme/colors';
 import styles from './styles';
 
-interface IProps {
+interface IProps extends StatusBarProps {
+  fullScreen?: boolean;
   headerMargin?: number;
-  backgroundColor?: Colors;
-  enableStatusBar?: boolean;
-  statusBarStyle?: 'light-content' | 'dark-content';
-  statusBarBackgroundColor?: string;
 }
 
 const MainLayout: React.FC<PropsWithChildren<IProps>> = ({
   children,
-  headerMargin = ScaledSize.SIZE_25,
-  backgroundColor,
-  enableStatusBar = true,
-  statusBarStyle = 'dark-content',
-  statusBarBackgroundColor = 'transparent',
+  fullScreen = false,
+  headerMargin = ScaledSize.SIZE_10,
+  ...props
 }) => {
   const { top } = useSafeAreaInsets();
-  const finalHeaderMargin = top > DEFAULT_VALUE_ZERO ? top : headerMargin;
+  const finalHeaderPadding =
+    top > DEFAULT_VALUE_ZERO ? top + headerMargin : headerMargin;
 
   return (
     <View
       style={{
-        backgroundColor,
-        marginTop: finalHeaderMargin,
+        backgroundColor: props.backgroundColor,
+        paddingTop: fullScreen ? DEFAULT_VALUE_ZERO : finalHeaderPadding,
         ...styles.container,
       }}
     >
       <StatusBar
-        translucent={enableStatusBar}
-        backgroundColor={statusBarBackgroundColor}
-        barStyle={statusBarStyle}
+        translucent={props.translucent}
+        backgroundColor={props.backgroundColor}
+        barStyle={props.barStyle}
       />
       {children}
     </View>
