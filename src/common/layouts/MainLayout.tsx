@@ -33,6 +33,7 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({
         translucent={props.translucent}
         backgroundColor={props.backgroundColor}
         barStyle={props.barStyle}
+        {...props}
       />
       {children}
     </View>
