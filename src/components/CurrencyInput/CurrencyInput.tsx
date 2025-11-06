@@ -1,4 +1,3 @@
-import { Colors } from '@/src/common/theme/colors';
 import React, { useState } from 'react';
 import {
   FlatList,
@@ -7,21 +6,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { Colors } from '@/src/common/theme/colors';
+import { COUNTRIES_LIST } from '@/src/common/types/constants';
 import OverlayModal from '../OverlayModal/OverlayModal';
 import Typography, { Variant } from '../Typography/Typography';
 import styles from './styles';
-
-const countries = [
-  { code: 'IN', name: 'India', flag: 'https://flagcdn.com/w40/in.png' },
-  { code: 'US', name: 'United States', flag: 'https://flagcdn.com/w40/us.png' },
-  {
-    code: 'GB',
-    name: 'United Kingdom',
-    flag: 'https://flagcdn.com/w40/gb.png',
-  },
-  { code: 'JP', name: 'Japan', flag: 'https://flagcdn.com/w40/jp.png' },
-];
 
 interface IProps {
   placeholder?: string;
@@ -32,10 +22,9 @@ const CurrencyInput: React.FC<IProps> = ({
   placeholder = 'Enter amount',
   hint,
 }) => {
-  const [selected, setSelected] = useState(countries[0]);
+  const [selected, setSelected] = useState(COUNTRIES_LIST[0]);
   const [value, setValue] = useState('');
   const [dropdownVisible, setDropdownVisible] = useState(false);
-
 
   const handleSelect = country => {
     setSelected(country);
@@ -51,7 +40,7 @@ const CurrencyInput: React.FC<IProps> = ({
           value={value}
           onChangeText={setValue}
           keyboardType="numeric"
-          placeholderTextColor={Colors.GREY_700}
+          placeholderTextColor={Colors.GREY_600}
         />
         <TouchableOpacity onPress={() => setDropdownVisible(true)}>
           <Image source={{ uri: selected.flag }} style={styles.flagImage} />
@@ -70,7 +59,7 @@ const CurrencyInput: React.FC<IProps> = ({
         onRequestClose={() => setDropdownVisible(false)}
       >
         <FlatList
-          data={countries}
+          data={COUNTRIES_LIST}
           keyExtractor={item => item.code}
           renderItem={({ item }) => (
             <TouchableOpacity
