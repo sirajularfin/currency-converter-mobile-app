@@ -1,15 +1,14 @@
 import { Colors } from '@/src/common/theme/colors';
-import { ScaledSize } from '@/src/common/theme/sizes';
 import React, { useState } from 'react';
 import {
   FlatList,
   Image,
-  Modal,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import OverlayModal from '../OverlayModal/OverlayModal';
 import Typography, { Variant } from '../Typography/Typography';
 import styles from './styles';
 
@@ -37,7 +36,6 @@ const CurrencyInput: React.FC<IProps> = ({
   const [value, setValue] = useState('');
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
-  const { bottom } = useSafeAreaInsets();
 
   const handleSelect = country => {
     setSelected(country);
@@ -67,49 +65,26 @@ const CurrencyInput: React.FC<IProps> = ({
         </View>
       )}
 
-      <Modal
-        transparent
-        animationType="slide"
-        statusBarTranslucent
+      <OverlayModal
         visible={dropdownVisible}
         onRequestClose={() => setDropdownVisible(false)}
       >
-        <TouchableOpacity
-          style={styles.overlay}
-          activeOpacity={1}
-          onPressOut={() => setDropdownVisible(false)}
-        >
-          <View
-            style={[
-              styles.dropdown,
-              { paddingBottom: bottom + ScaledSize.SIZE_20 },
-            ]}
-          >
-            <View style={styles.dropdownIndicator} />
-            <FlatList
-              data={countries}
-              keyExtractor={item => item.code}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={styles.dropdownItem}
-                  onPress={() => handleSelect(item)}
-                >
-                  <Image
-                    source={{ uri: item.flag }}
-                    style={styles.dropdownFlag}
-                  />
-                  <Typography
-                    variant={Variant.bodyMedium}
-                    color={Colors.GREY_900}
-                  >
-                    {item.name}
-                  </Typography>
-                </TouchableOpacity>
-              )}
-            />
-          </View>
-        </TouchableOpacity>
-      </Modal>
+        <FlatList
+          data={countries}
+          keyExtractor={item => item.code}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.dropdownItem}
+              onPress={() => handleSelect(item)}
+            >
+              <Image source={{ uri: item.flag }} style={styles.dropdownFlag} />
+              <Typography variant={Variant.bodyMedium} color={Colors.GREY_900}>
+                {item.name}
+              </Typography>
+            </TouchableOpacity>
+          )}
+        />
+      </OverlayModal>
     </View>
   );
 };
