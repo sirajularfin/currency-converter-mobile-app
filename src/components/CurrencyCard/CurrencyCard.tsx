@@ -37,7 +37,7 @@ const CurrencyCard: React.FC<IProps> = ({
 
   const panGesture = Gesture.Pan()
     .onStart(() => {
-      scale.value = withTiming(0.95, { duration: 100 });
+      scale.value = withTiming(0.9, { duration: 100 });
     })
     .onUpdate(event => {
       if (event.translationX < 0) {
