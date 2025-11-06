@@ -38,4 +38,16 @@ export enum Colors {
   GREY_700 = '#616161',
   GREY_800 = '#424242',
   GREY_900 = '#212121',
+
+  // Red Shades
+  RED_50 = '#FFEBEE',
+  RED_100 = '#FFCDD2',
+  RED_200 = '#EF9A9A',
+  RED_300 = '#E57373',
+  RED_400 = '#EF5350',
+  RED_500 = '#F44336',
+  RED_600 = '#E53935',
+  RED_700 = '#D32F2F',
+  RED_800 = '#C62828',
+  RED_900 = '#B71C1C',
 }

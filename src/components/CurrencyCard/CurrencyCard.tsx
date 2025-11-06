@@ -8,6 +8,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { Colors } from '@/src/common/theme/colors';
+import { ScaledSize } from '@/src/common/theme/sizes';
 import logger from '@/src/common/utils/logger.util';
 import Typography, { Variant } from '@/src/components/Typography/Typography';
 import styles from './styles';
@@ -68,9 +69,16 @@ const CurrencyCard: React.FC<IProps> = ({
       }
     });
 
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: translateX.value }, { scale: scale.value }],
-  }));
+  const animatedStyle = useAnimatedStyle(() => {
+    const isPastDeleteThreshold = translateX.value < DELETE_THRESHOLD;
+
+    return {
+      transform: [{ translateX: translateX.value }, { scale: scale.value }],
+      outlineColor: isPastDeleteThreshold ? Colors.RED_400 : undefined,
+      backgroundColor: isPastDeleteThreshold ? Colors.RED_50 : Colors.GREY_100,
+      outlineWidth: isPastDeleteThreshold ? ScaledSize.SIZE_2 : ScaledSize.ZERO,
+    };
+  });
 
   return (
     <GestureDetector gesture={panGesture}>

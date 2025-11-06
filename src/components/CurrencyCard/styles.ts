@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
   },
   container: {
     rowGap: ScaledSize.SIZE_10,
-    backgroundColor: Colors.GREY_100,
     padding: ScaledSize.SIZE_20,
   },
   rowOne: {
