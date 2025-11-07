@@ -63,12 +63,19 @@ const Button: React.FC<PropsWithChildren<IProps>> = ({
         }}
       >
         <LinearGradient
-          colors={[Colors.INDIGO_800, Colors.BLUE_700]}
+          colors={
+            props.disabled
+              ? [Colors.GREY_300, Colors.GREY_300]
+              : [Colors.INDIGO_800, Colors.BLUE_700]
+          }
           start={{ x: 1, y: 0.5 }}
           end={{ x: 0, y: 0.5 }}
           style={styles.container}
         >
-          <Typography variant={Variant.labelLarge} color={Colors.WHITE}>
+          <Typography
+            variant={Variant.labelLarge}
+            color={props.disabled ? Colors.GREY_600 : Colors.WHITE}
+          >
             {children}
           </Typography>
         </LinearGradient>
