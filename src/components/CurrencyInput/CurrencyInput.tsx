@@ -8,27 +8,36 @@ import {
 } from 'react-native';
 
 import { Colors } from '@/src/common/theme/colors';
-import { COUNTRIES_LIST } from '@/src/common/types/constants';
+import { ICurrencyInfo } from '@/src/common/types/currency.type';
 import OverlayModal from '../OverlayModal/OverlayModal';
 import Typography, { Variant } from '../Typography/Typography';
 import styles from './styles';
 
 interface IProps {
   placeholder?: string;
-  hint: string;
+  hint?: string;
+  dropdownData: ICurrencyInfo[];
+  onChangeText: (text: string) => void;
 }
 
 const CurrencyInput: React.FC<IProps> = ({
   placeholder = 'Enter amount',
   hint,
+  dropdownData,
+  onChangeText,
 }) => {
-  const [selected, setSelected] = useState(COUNTRIES_LIST[0]);
+  const [selected, setSelected] = useState(dropdownData[0]);
   const [value, setValue] = useState('');
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
-  const handleSelect = country => {
+  const handleSelect = (country: ICurrencyInfo) => {
     setSelected(country);
     setDropdownVisible(false);
+  };
+
+  const handleChangeText = (text: string) => {
+    setValue(text);
+    onChangeText?.(text);
   };
 
   return (
@@ -38,7 +47,7 @@ const CurrencyInput: React.FC<IProps> = ({
           style={styles.input}
           placeholder={placeholder}
           value={value}
-          onChangeText={setValue}
+          onChangeText={handleChangeText}
           keyboardType="numeric"
           placeholderTextColor={Colors.GREY_600}
         />
@@ -59,7 +68,7 @@ const CurrencyInput: React.FC<IProps> = ({
         onRequestClose={() => setDropdownVisible(false)}
       >
         <FlatList
-          data={COUNTRIES_LIST}
+          data={dropdownData}
           keyExtractor={item => item.code}
           renderItem={({ item }) => (
             <TouchableOpacity
@@ -68,7 +77,7 @@ const CurrencyInput: React.FC<IProps> = ({
             >
               <Image source={{ uri: item.flag }} style={styles.dropdownFlag} />
               <Typography variant={Variant.bodyMedium} color={Colors.GREY_900}>
-                {item.name}
+                {item.name} ({item.code})
               </Typography>
             </TouchableOpacity>
           )}
