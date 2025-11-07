@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   pressable: {
     borderRadius: ScaledSize.SIZE_8,
-    paddingVertical: ScaledSize.SIZE_12,
+    marginVertical: ScaledSize.SIZE_15,
   },
   container: {
     alignItems: 'center',
