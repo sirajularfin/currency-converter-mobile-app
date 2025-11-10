@@ -1,13 +1,62 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { FlatList, View } from 'react-native';
 
+import { ResetIcon } from '@/src/assets';
 import MainLayout from '@/src/common/layouts/MainLayout';
+import { Colors } from '@/src/common/theme/colors';
+import { ScaledSize } from '@/src/common/theme/sizes';
+import { DEFAULT_VALUE_ZERO } from '@/src/common/types/constants';
+import CurrencyCard from '@/src/components/CurrencyCard/CurrencyCard';
+import Typography, { Variant } from '@/src/components/Typography/Typography';
+import { useCurrencyRate } from '@/src/contexts/CurrencyRate/CurrencyRateContext';
 import { API_ROUTES, RootNavigationProps } from '@/src/navigation/types';
+import styles from './styles';
+
+const itemSeparator = () => <View style={{ height: ScaledSize.SIZE_20 }} />;
 
 const HistoryScreen: React.FC<RootNavigationProps<API_ROUTES.HISTORY>> = () => {
+  const { state, functions } = useCurrencyRate();
+
   return (
-    <MainLayout>
-      <Text>History Screen</Text>
+    <MainLayout barStyle="dark-content" backgroundColor={Colors.GREY_50}>
+      <View style={styles.container}>
+        <View style={styles.headerContainer}>
+          <Typography variant={Variant.headingSmall}>
+            Conversion History
+          </Typography>
+          <View
+            style={styles.resetContainer}
+            onTouchEnd={functions.clearHistory}
+          >
+            <Typography
+              variant={Variant.titleSmall}
+              color={Colors.GREY_800}
+              useLineHeight
+            >
+              Reset
+            </Typography>
+            <ResetIcon
+              color={Colors.GREY_800}
+              height={ScaledSize.SIZE_20}
+              width={ScaledSize.SIZE_20}
+            />
+          </View>
+        </View>
+        <FlatList
+          keyExtractor={item => item.code}
+          data={state.history}
+          renderItem={({ item }) => (
+            <CurrencyCard
+              amount={`${item?.amount ?? DEFAULT_VALUE_ZERO}`}
+              currencyCode={item.code}
+              currencyName={item.name}
+              countryName={item.origin}
+              flagUri={item.flag}
+            />
+          )}
+          ItemSeparatorComponent={itemSeparator}
+        />
+      </View>
     </MainLayout>
   );
 };
