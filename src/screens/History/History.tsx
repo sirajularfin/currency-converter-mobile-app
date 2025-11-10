@@ -7,12 +7,11 @@ import { Colors } from '@/src/common/theme/colors';
 import { ScaledSize } from '@/src/common/theme/sizes';
 import { DEFAULT_VALUE_ZERO } from '@/src/common/types/constants';
 import CurrencyCard from '@/src/components/CurrencyCard/CurrencyCard';
+import Separator from '@/src/components/Separator/Separator';
 import Typography, { Variant } from '@/src/components/Typography/Typography';
 import { useCurrencyRate } from '@/src/contexts/CurrencyRate/CurrencyRateContext';
 import { API_ROUTES, RootNavigationProps } from '@/src/navigation/types';
 import styles from './styles';
-
-const itemSeparator = () => <View style={{ height: ScaledSize.SIZE_20 }} />;
 
 const HistoryScreen: React.FC<RootNavigationProps<API_ROUTES.HISTORY>> = () => {
   const { state, functions } = useCurrencyRate();
@@ -54,7 +53,7 @@ const HistoryScreen: React.FC<RootNavigationProps<API_ROUTES.HISTORY>> = () => {
               flagUri={item.flag}
             />
           )}
-          ItemSeparatorComponent={itemSeparator}
+          ItemSeparatorComponent={Separator}
         />
       </View>
     </MainLayout>

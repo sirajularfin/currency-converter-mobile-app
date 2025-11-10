@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { FlatList, View } from 'react-native';
 
 import MainLayout from '@/src/common/layouts/MainLayout';
 import { Colors } from '@/src/common/theme/colors';
@@ -10,6 +10,7 @@ import {
 import Button from '@/src/components/Button/Button';
 import CurrencyCard from '@/src/components/CurrencyCard/CurrencyCard';
 import CurrencyInput from '@/src/components/CurrencyInput/CurrencyInput';
+import Separator from '@/src/components/Separator/Separator';
 import Typography, { Variant } from '@/src/components/Typography/Typography';
 import { useCurrencyRate } from '@/src/contexts/CurrencyRate/CurrencyRateContext';
 import { API_ROUTES, RootNavigationProps } from '@/src/navigation/types';
@@ -32,18 +33,20 @@ const HomeScreen: React.FC<RootNavigationProps<API_ROUTES.HOME>> = () => {
           <Typography variant={Variant.titleMedium}>
             Converted values
           </Typography>
-          {state.resultsList &&
-            state.resultsList.length &&
-            state.resultsList.map(currency => (
+          <FlatList
+            data={state.resultsList}
+            keyExtractor={item => item.code}
+            renderItem={({ item }) => (
               <CurrencyCard
-                key={currency.code}
-                amount={`${currency.amount ?? DEFAULT_VALUE_ZERO}`}
-                currencyCode={currency.code}
-                currencyName={currency.name}
-                countryName={currency.origin}
-                flagUri={currency.flag}
+                amount={`${item.amount ?? DEFAULT_VALUE_ZERO}`}
+                currencyCode={item.code}
+                currencyName={item.name}
+                countryName={item.origin}
+                flagUri={item.flag}
               />
-            ))}
+            )}
+            ItemSeparatorComponent={Separator}
+          />
         </View>
       </View>
     </MainLayout>
