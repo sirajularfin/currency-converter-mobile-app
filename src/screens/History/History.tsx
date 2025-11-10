@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { FlatList, View } from 'react-native';
 
 import { ResetIcon } from '@/src/assets';
@@ -14,6 +15,7 @@ import { API_ROUTES, RootNavigationProps } from '@/src/navigation/types';
 import styles from './styles';
 
 const HistoryScreen: React.FC<RootNavigationProps<API_ROUTES.HISTORY>> = () => {
+  const { t } = useTranslation();
   const { state, functions } = useCurrencyRate();
 
   return (
@@ -21,7 +23,7 @@ const HistoryScreen: React.FC<RootNavigationProps<API_ROUTES.HISTORY>> = () => {
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <Typography variant={Variant.headingSmall}>
-            Conversion History
+            {t('history.title')}
           </Typography>
           <View
             style={styles.resetContainer}
@@ -32,7 +34,7 @@ const HistoryScreen: React.FC<RootNavigationProps<API_ROUTES.HISTORY>> = () => {
               color={Colors.GREY_800}
               useLineHeight
             >
-              Reset
+              {t('history.resetButton')}
             </Typography>
             <ResetIcon
               color={Colors.GREY_800}
@@ -55,8 +57,8 @@ const HistoryScreen: React.FC<RootNavigationProps<API_ROUTES.HISTORY>> = () => {
           )}
           ItemSeparatorComponent={Separator}
           ListEmptyComponent={
-            <Typography variant={Variant.bodyLarge} color={Colors.GREY_700}>
-              No conversion history available.
+            <Typography variant={Variant.bodyMedium} color={Colors.GREY_700}>
+              {t('history.noData')}
             </Typography>
           }
         />

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FlatList, View } from 'react-native';
 
 import MainLayout from '@/src/common/layouts/MainLayout';
@@ -17,6 +18,7 @@ import styles from './styles';
 const ManageCurrenciesScreen: React.FC<
   RootNavigationProps<API_ROUTES.MANAGE_CURRENCIES>
 > = () => {
+  const { t } = useTranslation();
   const [selectedCurrency, setSelectedCurrency] =
     useState<ICurrencyInfo | null>(null);
 
@@ -26,7 +28,7 @@ const ManageCurrenciesScreen: React.FC<
     <MainLayout barStyle="dark-content" backgroundColor={Colors.GREY_50}>
       <View style={styles.container}>
         <Typography variant={Variant.headingSmall} color={Colors.GREY_900}>
-          Manage Rates
+          {t('manageCurrencies.title')}
         </Typography>
         <CurrencyInput
           showHint
@@ -41,12 +43,9 @@ const ManageCurrenciesScreen: React.FC<
           }}
           disabled={!selectedCurrency?.amount}
         >
-          Add Rate
+          {t('manageCurrencies.addRate')}
         </Button>
         <View style={styles.divider} />
-        <Typography variant={Variant.titleMedium} color={Colors.GREY_900}>
-          Stored currencies
-        </Typography>
         <FlatList
           style={styles.flexView}
           scrollEnabled={true}
@@ -64,9 +63,14 @@ const ManageCurrenciesScreen: React.FC<
             />
           )}
           ItemSeparatorComponent={Separator}
+          ListHeaderComponent={
+            <Typography variant={Variant.titleMedium} color={Colors.GREY_900}>
+              {t('manageCurrencies.storedCurrencies')}
+            </Typography>
+          }
           ListEmptyComponent={
-            <Typography variant={Variant.bodyLarge} color={Colors.GREY_700}>
-              No currencies added yet. Add exchange rates above.
+            <Typography variant={Variant.bodyMedium} color={Colors.GREY_700}>
+              {t('manageCurrencies.noCurrencies')}
             </Typography>
           }
         />

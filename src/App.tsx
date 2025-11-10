@@ -3,8 +3,8 @@ import RNBootSplash from 'react-native-bootsplash';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { AppProviders } from '@/src/contexts/AppProviders';
 import RootNavigation from '@/src/navigation/RootNavigation';
-import { CurrencyRateProvider } from './contexts/CurrencyRate/CurrencyRateContext';
 
 function App() {
   useEffect(() => {
@@ -16,9 +16,9 @@ function App() {
     <StrictMode>
       <GestureHandlerRootView>
         <SafeAreaProvider>
-          <CurrencyRateProvider>
+          <AppProviders>
             <RootNavigation />
-          </CurrencyRateProvider>
+          </AppProviders>
         </SafeAreaProvider>
       </GestureHandlerRootView>
     </StrictMode>

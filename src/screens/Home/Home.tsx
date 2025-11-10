@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FlatList, View } from 'react-native';
 
 import MainLayout from '@/src/common/layouts/MainLayout';
@@ -19,6 +20,7 @@ import { API_ROUTES, RootNavigationProps } from '@/src/navigation/types';
 import styles from './styles';
 
 const HomeScreen: React.FC<RootNavigationProps<API_ROUTES.HOME>> = () => {
+  const { t } = useTranslation();
   const { state, functions } = useCurrencyRate();
   const [amount, setAmount] = useState<number>(0);
   const [selectedCurrency, setSelectedCurrency] = useState<ICurrencyInfo>(
@@ -52,9 +54,6 @@ const HomeScreen: React.FC<RootNavigationProps<API_ROUTES.HOME>> = () => {
         <Button onPress={handleAction}>Convert</Button>
 
         <View style={styles.resultContainer}>
-          <Typography variant={Variant.titleMedium}>
-            Converted values
-          </Typography>
           <FlatList
             data={state.resultsList}
             keyExtractor={item => item.code}
@@ -68,10 +67,14 @@ const HomeScreen: React.FC<RootNavigationProps<API_ROUTES.HOME>> = () => {
               />
             )}
             ItemSeparatorComponent={Separator}
+            ListHeaderComponent={
+              <Typography variant={Variant.titleMedium} color={Colors.GREY_900}>
+                {t('home.heading')}
+              </Typography>
+            }
             ListEmptyComponent={
               <Typography variant={Variant.bodyMedium} color={Colors.GREY_700}>
-                No results yet. Make sure exchange rates are added in Manage
-                Currencies.
+                {t('home.noResults')}
               </Typography>
             }
           />
