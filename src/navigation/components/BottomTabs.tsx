@@ -79,7 +79,7 @@ const BottomTabs: React.FC = () => {
     <Tab.Navigator
       tabBar={renderTabBar}
       screenOptions={({ route }) => ({
-        animation: 'shift',
+        animation: 'none',
         headerShown: false,
         tabBarShowLabel: true,
         tabBarStyle: styles.tabBar,
