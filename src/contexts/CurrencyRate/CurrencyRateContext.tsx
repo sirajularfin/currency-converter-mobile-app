@@ -1,4 +1,3 @@
-import { ICurrencyInfo } from '@/src/common/types/currency.type';
 import React, {
   createContext,
   PropsWithChildren,
@@ -6,6 +5,8 @@ import React, {
   useContext,
   useState,
 } from 'react';
+
+import { ICurrencyInfo } from '@/src/common/types/currency.type';
 import { CurrencyRateContextType } from './types';
 
 const CurrencyRateContext = createContext<CurrencyRateContextType | undefined>(
@@ -26,6 +27,9 @@ export const CurrencyRateProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {
   const [currencies, setCurrencies] = useState<ICurrencyInfo[]>([]);
+  const [history, setHistory] = useState<ICurrencyInfo[]>([]);
+  const [resultsList, setResultsList] = useState<ICurrencyInfo[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const addCurrency = (currency: ICurrencyInfo) => {
     setCurrencies(prev => {
@@ -57,31 +61,35 @@ export const CurrencyRateProvider: React.FC<PropsWithChildren> = ({
     [currencies],
   );
 
-  const getStoredRate = useCallback(() => {
-    const result = currencies.filter(c => c.currentRate);
-    return result.length > 0 ? result : undefined;
-  }, [currencies]);
+  const clearHistory = useCallback(() => {
+    setHistory([]);
+  }, []);
 
   const convertCurrency = useCallback(
-    (amount: number, fromCode: string): Record<string, number> => {
+    (amount: number, fromCode: string) => {
+      setIsLoading(true);
       const fromCurrency = getCurrency(fromCode);
-      const result: Record<string, number> = {};
+      const result: ICurrencyInfo[] = [];
 
-      if (!fromCurrency || fromCurrency.currentRate === undefined) {
+      if (!fromCurrency || fromCurrency.amount === undefined) {
         return result;
       }
 
       // Convert to USD first
-      const amountInUSD = amount / fromCurrency.currentRate;
+      setHistory(prev => [...prev, fromCurrency]);
+      const amountInUSD = amount / fromCurrency.amount;
 
       // Convert to all currencies that have a current rate
       currencies.forEach(currency => {
-        if (currency.currentRate !== undefined) {
-          result[currency.code] = amountInUSD * currency.currentRate;
+        if (currency.amount !== undefined) {
+          result.push({
+            ...currency,
+            amount: amountInUSD * currency.amount,
+          });
         }
       });
-
-      return result;
+      setResultsList(result);
+      setIsLoading(false);
     },
     [getCurrency, currencies],
   );
@@ -89,7 +97,10 @@ export const CurrencyRateProvider: React.FC<PropsWithChildren> = ({
   const value: CurrencyRateContextType = React.useMemo(
     () => ({
       state: {
+        history,
         currencies,
+        resultsList,
+        isLoading,
       },
       functions: {
         addCurrency,
@@ -97,10 +108,18 @@ export const CurrencyRateProvider: React.FC<PropsWithChildren> = ({
         updateCurrency,
         convertCurrency,
         getCurrency,
-        getStoredRate,
+        clearHistory,
       },
     }),
-    [convertCurrency, currencies, getCurrency, getStoredRate],
+    [
+      currencies,
+      history,
+      isLoading,
+      resultsList,
+      clearHistory,
+      convertCurrency,
+      getCurrency,
+    ],
   );
 
   return (

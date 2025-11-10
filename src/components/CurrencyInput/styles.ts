@@ -1,3 +1,4 @@
+import globalStyles from '@/src/common/styles/globals';
 import { Colors } from '@/src/common/theme/colors';
 import { FONT_TYPE_REGULAR, getFont } from '@/src/common/theme/fonts';
 import { ScaledSize } from '@/src/common/theme/sizes';
@@ -5,7 +6,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.GREY_100,
 
     flexDirection: 'row',
     alignItems: 'center',
@@ -17,12 +18,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: ScaledSize.SIZE_20,
     height: ScaledSize.SIZE_60,
   },
+  valuePreview: {
+    ...globalStyles.shadow,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: ScaledSize.SIZE_8,
+    backgroundColor: Colors.GREY_200,
+    maxHeight: ScaledSize.SIZE_100,
+  },
   input: {
     flex: 1,
 
     color: Colors.BLACK,
     fontSize: ScaledSize.SIZE_16,
     fontFamily: getFont(FONT_TYPE_REGULAR),
+    includeFontPadding: false,
   },
   flagImage: {
     width: ScaledSize.SIZE_40,

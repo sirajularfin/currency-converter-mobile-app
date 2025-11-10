@@ -54,7 +54,7 @@ const ManageCurrenciesScreen: React.FC<
           keyExtractor={item => item.code}
           renderItem={({ item }) => (
             <CurrencyCard
-              amount={item.currentRate?.toString() ?? ''}
+              amount={item.amount?.toString() ?? ''}
               currencyCode={item.code}
               currencyName={item.name}
               countryName={item.origin}
