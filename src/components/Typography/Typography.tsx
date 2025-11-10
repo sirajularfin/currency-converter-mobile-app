@@ -31,10 +31,12 @@ export interface Props
       | 'ellipsizeMode'
       | 'allowFontScaling'
       | 'adjustsFontSizeToFit'
+      | 'testID'
     > {
   variant?: Variant;
   useLineHeight?: boolean;
   onPress?: () => void;
+  style?: TextProps['style'];
 }
 
 const Typography: React.FC<PropsWithChildren<Props>> = ({
@@ -56,6 +58,7 @@ const Typography: React.FC<PropsWithChildren<Props>> = ({
         styleSheets[variant as keyof typeof styleSheets],
         styleSheets.shared,
         props.weight && styleSheets.weight,
+        props.style,
       ]}
       onPress={onPress}
     >
