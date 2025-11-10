@@ -7,7 +7,6 @@ import React, {
   useState,
 } from 'react';
 
-import { SUPPORTED_CURRENCIES } from '@/src/common/types/constants';
 import { ICurrencyInfo } from '@/src/common/types/currency.type';
 import logger from '@/src/common/utils/logger.util';
 import { CurrencyRateContextType } from './types';
@@ -29,8 +28,7 @@ export const useCurrencyRate = (): CurrencyRateContextType => {
 export const CurrencyRateProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {
-  const [currencies, setCurrencies] =
-    useState<ICurrencyInfo[]>(SUPPORTED_CURRENCIES);
+  const [currencies, setCurrencies] = useState<ICurrencyInfo[]>([]);
   const [history, setHistory] = useState<ICurrencyInfo[]>([]);
   const [resultsList, setResultsList] = useState<ICurrencyInfo[]>([]);
 

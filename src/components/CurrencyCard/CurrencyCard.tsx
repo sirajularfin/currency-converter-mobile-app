@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
@@ -32,8 +33,20 @@ const CurrencyCard: React.FC<IProps> = ({
 }) => {
   const translateX = useSharedValue(0);
   const scale = useSharedValue(1);
-  const SWIPE_THRESHOLD = -100; // Distance threshold for swiping left
-  const DELETE_THRESHOLD = -150; // Distance to trigger delete
+  const height = useSharedValue(100); // Initial height of card
+  const opacity = useSharedValue(1);
+  const SWIPE_THRESHOLD = -100;
+  const DELETE_THRESHOLD = -150;
+
+  const handleDelete = () => {
+    if (onDelete) {
+      logger(
+        `[CurrencyCard] Deleted ${currencyCode} ${amount} on swipe`,
+        'info',
+      );
+      onDelete();
+    }
+  };
 
   const panGesture = Gesture.Pan()
     .onStart(() => {
@@ -49,20 +62,17 @@ const CurrencyCard: React.FC<IProps> = ({
       const velocity = event.velocityX;
       const distance = event.translationX;
 
-      // Check if swipe has sufficient velocity OR distance
       const shouldDelete =
         distance < DELETE_THRESHOLD ||
         (distance < SWIPE_THRESHOLD && velocity < -500);
 
       if (shouldDelete) {
-        translateX.value = withTiming(-500, { duration: 300 }, () => {
-          if (onDelete) {
-            onDelete();
-            logger(
-              `[CurrencyCard] Deleted ${currencyCode}${amount} on swipe`,
-              'info',
-            );
-          }
+        // Animate card off screen
+        translateX.value = withTiming(-500, { duration: 300 });
+        opacity.value = withTiming(0, { duration: 300 });
+        height.value = withTiming(0, { duration: 300 }, () => {
+          // Call delete after animation completes
+          runOnJS(handleDelete)();
         });
       } else {
         translateX.value = withTiming(0);
@@ -73,10 +83,13 @@ const CurrencyCard: React.FC<IProps> = ({
     const isPastDeleteThreshold = translateX.value < DELETE_THRESHOLD;
 
     return {
+      height: height.value,
+      opacity: opacity.value,
+      overflow: 'hidden',
       transform: [{ translateX: translateX.value }, { scale: scale.value }],
-      outlineColor: isPastDeleteThreshold ? Colors.RED_400 : undefined,
+      borderColor: isPastDeleteThreshold ? Colors.RED_400 : Colors.GREY_300,
       backgroundColor: isPastDeleteThreshold ? Colors.RED_50 : Colors.GREY_100,
-      outlineWidth: isPastDeleteThreshold ? ScaledSize.SIZE_2 : ScaledSize.ZERO,
+      borderWidth: isPastDeleteThreshold ? ScaledSize.SIZE_2 : ScaledSize.ZERO,
     };
   });
 
