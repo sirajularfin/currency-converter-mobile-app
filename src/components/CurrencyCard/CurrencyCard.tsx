@@ -12,6 +12,7 @@ import { Colors } from '@/src/common/theme/colors';
 import { ScaledSize } from '@/src/common/theme/sizes';
 import logger from '@/src/common/utils/logger.util';
 import Typography, { Variant } from '@/src/components/Typography/Typography';
+import { useTranslation } from 'react-i18next';
 import styles from './styles';
 
 interface IProps {
@@ -31,6 +32,7 @@ const CurrencyCard: React.FC<IProps> = ({
   flagUri,
   onDelete,
 }) => {
+  const { t } = useTranslation();
   const translateX = useSharedValue(0);
   const scale = useSharedValue(1);
   const height = useSharedValue(100); // Initial height of card
@@ -103,7 +105,7 @@ const CurrencyCard: React.FC<IProps> = ({
               variant={Variant.titleLarge}
               color={Colors.GREY_900}
             >
-              {amount} {currencyName} ({currencyCode})
+              {amount} {t(currencyName)} ({currencyCode})
             </Typography>
           </View>
           <View style={styles.rowTwo}>
