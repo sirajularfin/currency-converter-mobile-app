@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 
 import { ICurrencyInfo } from '@/src/common/types/currency.type';
+import logger from '@/src/common/utils/logger.util';
 import { CurrencyRateContextType } from './types';
 
 const CurrencyRateContext = createContext<CurrencyRateContextType | undefined>(
@@ -86,6 +87,7 @@ export const CurrencyRateProvider: React.FC<PropsWithChildren> = ({
           });
         }
       });
+      logger(`[Conext] Converting from ${fromCode} with amount ${amount}`);
       setResultsList(result);
     },
     [getCurrency, currencies],

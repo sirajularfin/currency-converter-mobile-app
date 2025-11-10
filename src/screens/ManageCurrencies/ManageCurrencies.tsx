@@ -39,7 +39,7 @@ const ManageCurrenciesScreen: React.FC<
           onPress={() => {
             selectedCurrency && functions.addCurrency(selectedCurrency);
           }}
-          disabled={!selectedCurrency}
+          disabled={!selectedCurrency?.amount}
         >
           Add Rate
         </Button>
