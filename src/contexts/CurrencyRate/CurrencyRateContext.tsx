@@ -29,7 +29,6 @@ export const CurrencyRateProvider: React.FC<PropsWithChildren> = ({
   const [currencies, setCurrencies] = useState<ICurrencyInfo[]>([]);
   const [history, setHistory] = useState<ICurrencyInfo[]>([]);
   const [resultsList, setResultsList] = useState<ICurrencyInfo[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const addCurrency = (currency: ICurrencyInfo) => {
     setCurrencies(prev => {
@@ -67,7 +66,6 @@ export const CurrencyRateProvider: React.FC<PropsWithChildren> = ({
 
   const convertCurrency = useCallback(
     (amount: number, fromCode: string) => {
-      setIsLoading(true);
       const fromCurrency = getCurrency(fromCode);
       const result: ICurrencyInfo[] = [];
 
@@ -89,7 +87,6 @@ export const CurrencyRateProvider: React.FC<PropsWithChildren> = ({
         }
       });
       setResultsList(result);
-      setIsLoading(false);
     },
     [getCurrency, currencies],
   );
@@ -100,7 +97,6 @@ export const CurrencyRateProvider: React.FC<PropsWithChildren> = ({
         history,
         currencies,
         resultsList,
-        isLoading,
       },
       functions: {
         addCurrency,
@@ -114,7 +110,6 @@ export const CurrencyRateProvider: React.FC<PropsWithChildren> = ({
     [
       currencies,
       history,
-      isLoading,
       resultsList,
       clearHistory,
       convertCurrency,

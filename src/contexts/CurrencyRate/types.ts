@@ -4,8 +4,6 @@ interface CurrencyRateState {
   history: ICurrencyInfo[];
   resultsList: ICurrencyInfo[];
   currencies: ICurrencyInfo[];
-  isLoading?: React.SetStateAction<boolean>;
-  error?: string | null;
 }
 
 interface CurrencyRateFunctions {
