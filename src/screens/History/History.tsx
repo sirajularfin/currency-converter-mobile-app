@@ -42,7 +42,7 @@ const HistoryScreen: React.FC<RootNavigationProps<API_ROUTES.HISTORY>> = () => {
           </View>
         </View>
         <FlatList
-          keyExtractor={item => item.code}
+          keyExtractor={(item, index) => `${index}_${item.code}_${item.amount}`}
           data={state.history}
           renderItem={({ item }) => (
             <CurrencyCard
@@ -54,6 +54,11 @@ const HistoryScreen: React.FC<RootNavigationProps<API_ROUTES.HISTORY>> = () => {
             />
           )}
           ItemSeparatorComponent={Separator}
+          ListEmptyComponent={
+            <Typography variant={Variant.bodyLarge} color={Colors.GREY_700}>
+              No conversion history available.
+            </Typography>
+          }
         />
       </View>
     </MainLayout>

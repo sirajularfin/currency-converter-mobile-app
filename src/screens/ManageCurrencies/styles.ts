@@ -8,9 +8,12 @@ const styles = StyleSheet.create({
     ...globalStyles.flexContainer,
     gap: ScaledSize.SIZE_20,
   },
+  flexView: {
+    flex: 1,
+  },
   divider: {
     height: ScaledSize.SIZE_20,
   },
-})
+});
 
 export default styles;

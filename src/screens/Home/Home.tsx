@@ -55,27 +55,26 @@ const HomeScreen: React.FC<RootNavigationProps<API_ROUTES.HOME>> = () => {
           <Typography variant={Variant.titleMedium}>
             Converted values
           </Typography>
-          {state.resultsList.length === 0 ? (
-            <Typography variant={Variant.bodyMedium} color={Colors.GREY_700}>
-              No results yet. Make sure exchange rates are added in Manage
-              Currencies.
-            </Typography>
-          ) : (
-            <FlatList
-              data={state.resultsList}
-              keyExtractor={item => item.code}
-              renderItem={({ item }) => (
-                <CurrencyCard
-                  amount={`${item.amount?.toFixed(2) ?? DEFAULT_VALUE_ZERO}`}
-                  currencyCode={item.code}
-                  currencyName={item.name}
-                  countryName={item.origin}
-                  flagUri={item.flag}
-                />
-              )}
-              ItemSeparatorComponent={Separator}
-            />
-          )}
+          <FlatList
+            data={state.resultsList}
+            keyExtractor={item => item.code}
+            renderItem={({ item }) => (
+              <CurrencyCard
+                amount={`${item.amount?.toFixed(2) ?? DEFAULT_VALUE_ZERO}`}
+                currencyCode={item.code}
+                currencyName={item.name}
+                countryName={item.origin}
+                flagUri={item.flag}
+              />
+            )}
+            ItemSeparatorComponent={Separator}
+            ListEmptyComponent={
+              <Typography variant={Variant.bodyMedium} color={Colors.GREY_700}>
+                No results yet. Make sure exchange rates are added in Manage
+                Currencies.
+              </Typography>
+            }
+          />
         </View>
       </View>
     </MainLayout>

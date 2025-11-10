@@ -48,6 +48,9 @@ const ManageCurrenciesScreen: React.FC<
           Stored currencies
         </Typography>
         <FlatList
+          style={styles.flexView}
+          scrollEnabled={true}
+          showsVerticalScrollIndicator={false}
           data={state.currencies}
           keyExtractor={item => item.code}
           renderItem={({ item }) => (
@@ -61,7 +64,11 @@ const ManageCurrenciesScreen: React.FC<
             />
           )}
           ItemSeparatorComponent={Separator}
-          ListEmptyComponent={null}
+          ListEmptyComponent={
+            <Typography variant={Variant.bodyLarge} color={Colors.GREY_700}>
+              No currencies added yet. Add exchange rates above.
+            </Typography>
+          }
         />
       </View>
     </MainLayout>
