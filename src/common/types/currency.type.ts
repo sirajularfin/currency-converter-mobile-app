@@ -3,4 +3,5 @@ export interface ICurrencyInfo {
   name: string;
   origin: string;
   flag: string;
+  currentRate?: number;
 }

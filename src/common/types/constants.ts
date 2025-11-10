@@ -3,12 +3,13 @@ import { ICurrencyInfo } from './currency.type';
 export const DEFAULT_VALUE_ZERO = 0;
 
 export const SUPPORTED_CURRENCIES: ICurrencyInfo[] = [
-  {
-    code: 'USD',
-    name: 'US Dollar',
-    origin: 'United States',
-    flag: 'https://flagcdn.com/w40/us.png',
-  },
+  // Base currency USD is excluded from the list
+  // {
+  //   code: 'USD',
+  //   name: 'US Dollar',
+  //   origin: 'United States',
+  //   flag: 'https://flagcdn.com/w40/us.png',
+  // },
   {
     code: 'EUR',
     name: 'Euro',

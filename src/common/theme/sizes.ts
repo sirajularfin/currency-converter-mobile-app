@@ -168,6 +168,10 @@ export enum ScaledSize {
   SIZE_78 = scaledDimensionSize(78),
   SIZE_79 = scaledDimensionSize(79),
   SIZE_80 = scaledDimensionSize(80),
+  SIZE_100 = scaledDimensionSize(100),
+  SIZE_200 = scaledDimensionSize(200),
+  SIZE_300 = scaledDimensionSize(300),
+  SIZE_400 = scaledDimensionSize(400),
   SCREEN_WIDTH = Dimensions.get('window').width,
   SCREEN_HEIGHT = Dimensions.get('window').height,
 }

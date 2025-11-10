@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNavigationContainerRef } from '@react-navigation/native';
 import {
   createNativeStackNavigator,
+  NativeStackNavigationProp,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 
@@ -23,5 +24,6 @@ export const Stack = createNativeStackNavigator<RootStackParamList>();
 export const Tab = createBottomTabNavigator<RootStackParamList>();
 export const navigationRef = createNavigationContainerRef<RootStackParamList>();
 
+export type AppNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 export type RootNavigationProps<T extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, T>;
