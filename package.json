@@ -13,7 +13,7 @@
     "clean:package": "rm -rf node_modules && yarn install",
     "clean:ios": "rm -rf ios/build ios/Pods ios/Podfile.lock node_modules && rm -rf ~/Library/Developer/Xcode/DerivedData/* && yarn install",
     "clean:android": "rm -rf android/app/build android/build android/.gradle node_modules && yarn install",
-    "clean:final": "yarn cache clean && rm -rf android/app/build android/build android/.gradle ios/build ios/Pods ios/Podfile.lock node_modules && rm -rf ~/Library/Developer/Xcode/DerivedData/* && yarn install",
+    "clean:final": "yarn cache clean && watchman watch-del-all && rm -rf android/app/build android/build android/.gradle ios/build ios/Pods ios/Podfile.lock node_modules && rm -rf ~/Library/Developer/Xcode/DerivedData/* && yarn install",
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
