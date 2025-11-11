@@ -3,6 +3,9 @@ import { Colors } from '../theme/colors';
 import { ScaledSize } from '../theme/sizes';
 
 const globalStyles = StyleSheet.create({
+  heading: {
+    paddingBottom: ScaledSize.SIZE_10,
+  },
   flexContainer: {
     flex: 1,
     paddingTop: ScaledSize.SIZE_10,

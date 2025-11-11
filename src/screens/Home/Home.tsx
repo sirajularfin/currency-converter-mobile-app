@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FlatList, Keyboard, View } from 'react-native';
 
 import MainLayout from '@/src/common/layouts/MainLayout';
+import globalStyles from '@/src/common/styles/globals';
 import { Colors } from '@/src/common/theme/colors';
 import { ScaledSize } from '@/src/common/theme/sizes';
 import {
@@ -72,7 +73,11 @@ const HomeScreen: React.FC<RootNavigationProps<API_ROUTES.HOME>> = () => {
             )}
             ItemSeparatorComponent={Separator}
             ListHeaderComponent={
-              <Typography variant={Variant.titleMedium} color={Colors.GREY_900}>
+              <Typography
+                variant={Variant.titleMedium}
+                color={Colors.GREY_900}
+                style={globalStyles.heading}
+              >
                 {t('home.heading')}
               </Typography>
             }

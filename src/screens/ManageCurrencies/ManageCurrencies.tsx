@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FlatList, View } from 'react-native';
 
 import MainLayout from '@/src/common/layouts/MainLayout';
+import globalStyles from '@/src/common/styles/globals';
 import { Colors } from '@/src/common/theme/colors';
 import { ScaledSize } from '@/src/common/theme/sizes';
 import { SUPPORTED_CURRENCIES } from '@/src/common/types/constants';
@@ -67,7 +68,11 @@ const ManageCurrenciesScreen: React.FC<
           )}
           ItemSeparatorComponent={Separator}
           ListHeaderComponent={
-            <Typography variant={Variant.titleMedium} color={Colors.GREY_900}>
+            <Typography
+              variant={Variant.titleMedium}
+              color={Colors.GREY_900}
+              style={globalStyles.heading}
+            >
               {t('manageCurrencies.storedCurrencies')}
             </Typography>
           }
