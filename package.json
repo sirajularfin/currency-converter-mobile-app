@@ -1,6 +1,7 @@
 {
   "name": "CurrencyConverter",
   "version": "0.0.1",
+  "repository": "https://github.com/sirajularfin/currency-converter-mobile-app.git",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
