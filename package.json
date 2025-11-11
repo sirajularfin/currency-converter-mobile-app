@@ -17,6 +17,9 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "postinstall": "cd ios && pod install && cd .. || echo 'Skipping iOS pods install (non-macOS system)'"
   },
   "dependencies": {
@@ -52,6 +55,9 @@
     "@react-native/eslint-config": "0.81.5",
     "@react-native/metro-config": "0.81.5",
     "@react-native/typescript-config": "0.81.5",
+    "@testing-library/jest-native": "^5.4.3",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/react-native": "^13.3.3",
     "@types/jest": "^29.5.13",
     "@types/react": "^19.1.0",
     "@types/react-test-renderer": "^19.1.0",
