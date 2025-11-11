@@ -78,3 +78,4 @@ This is one way to run your app — you can also build it directly from Android 
 2. The user is expected to first set the desired currency rates in the Manage Rates screen before performing any conversions.
 3. Next, the user can perform currency conversions on the Home screen.
 4. The app maintains a history of all conversions performed by the user, which can be viewed on the History screen.
+5. Swipe left to delete a currency rates from the Manage Rates screen.
