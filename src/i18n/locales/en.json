@@ -1,7 +1,7 @@
 {
   "history.title": "Conversion History",
   "history.resetButton": "Reset",
-  "history.noData": "No conversion history available.",
+  "history.noData": "Oops! Nothing to show here yet. Let's convert some currency!",
   "home.heading": "Converted values",
   "home.noResults": "No results yet. Convert some currency!",
   "manageCurrencies.title": "Manage Rates",
