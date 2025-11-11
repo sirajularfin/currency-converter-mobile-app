@@ -2398,6 +2398,34 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
+  - RNLocalize (3.6.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
   - RNReanimated (4.1.3):
     - boost
     - DoubleConversion
@@ -2802,6 +2830,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNBootSplash (from `../node_modules/react-native-bootsplash`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNLocalize (from `../node_modules/react-native-localize`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -2964,6 +2993,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-bootsplash"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNLocalize:
+    :path: "../node_modules/react-native-localize"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -3048,15 +3079,16 @@ SPEC CHECKSUMS:
   React-timing: 0f784d34f0fc34f35c3cd436175be1e7f6866aac
   React-utils: 48caab3b6104f69dcda7190bdf217c98cbf1c7c1
   ReactAppDependencyProvider: c277c5b231881ad4f00cd59e3aa0671b99d7ebee
-  ReactCodegen: 0936e9ff5fd359d5f6b5173c2a90e91b446d33a3
+  ReactCodegen: 3559344e458238aece67787746953e0fbdffb0be
   ReactCommon: 8df6e27c060970b9fb77a86e69a1cf9b934ea458
   RNBootSplash: 1e2d285376d8901d0b106da4829817e53f3eed94
   RNGestureHandler: 606b85298c19d681ca076ca523dc23396120adab
-  RNReanimated: 5f5ea9ba506ef48182d76070eaf96b032deefb1a
+  RNLocalize: 000be4f69edb5cc1b3266379ba6e40ec77a54a3c
+  RNReanimated: fde64e8b6d0d68de699381e38e5743ebcd4415c2
   RNScreens: 3693ec4bbc0065151b843269e50e9807644e9918
   RNSVG: 4a4f7d4897abbfdc6dfe30be5d6cc5ffee23ea43
   RNVectorIcons: 6acc19c833be864e9c70894e101a587fe491150a
-  RNWorklets: 7009206bd2f62421bf6da0e9c823c1d64e4da634
+  RNWorklets: 73b7c4cb96651cb4fce98ab6df8a128457104731
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: d7064c22f7ba5890471d32dd95e72c77ec911f26
 
