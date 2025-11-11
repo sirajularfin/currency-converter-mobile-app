@@ -81,46 +81,52 @@ const CurrencyCard: React.FC<IProps> = ({
       }
     });
 
-  const animatedStyle = useAnimatedStyle(() => {
-    const isPastDeleteThreshold = translateX.value < DELETE_THRESHOLD;
+ const animatedStyle = useAnimatedStyle(() => {
+   return {
+     height: height.value,
+     opacity: opacity.value,
+     transform: [{ translateX: translateX.value }, { scale: scale.value }],
+   };
+ });
 
-    return {
-      height: height.value,
-      opacity: opacity.value,
-      overflow: 'hidden',
-      transform: [{ translateX: translateX.value }, { scale: scale.value }],
-      borderColor: isPastDeleteThreshold ? Colors.RED_400 : Colors.GREY_300,
-      backgroundColor: isPastDeleteThreshold ? Colors.RED_50 : Colors.GREY_100,
-      borderWidth: isPastDeleteThreshold ? ScaledSize.SIZE_2 : ScaledSize.ZERO,
-    };
-  });
+ const cardStyle = useAnimatedStyle(() => {
+   const isPastDeleteThreshold = translateX.value < DELETE_THRESHOLD;
 
-  const cardContent = (
-    <Animated.View style={[styles.card, animatedStyle]}>
-      <View style={styles.container}>
-        <View style={styles.rowOne}>
-          <Typography
-            useLineHeight
-            variant={Variant.titleLarge}
-            color={Colors.GREY_900}
-            numberOfLines={1}
-          >
-            {amount} {t(currencyName)} ({currencyCode})
-          </Typography>
-        </View>
-        <View style={styles.rowTwo}>
-          <Image source={{ uri: flagUri }} style={styles.flagImage} />
-          <Typography
-            useLineHeight
-            variant={Variant.bodyMedium}
-            color={Colors.GREY_800}
-          >
-            {countryName}
-          </Typography>
-        </View>
-      </View>
-    </Animated.View>
-  );
+   return {
+     borderColor: isPastDeleteThreshold ? Colors.RED_400 : Colors.GREY_300,
+     backgroundColor: isPastDeleteThreshold ? Colors.RED_50 : Colors.GREY_100,
+     borderWidth: isPastDeleteThreshold ? ScaledSize.SIZE_2 : ScaledSize.ZERO,
+   };
+ });
+
+ const cardContent = (
+   <Animated.View style={[animatedStyle]}>
+     <Animated.View style={[styles.card, cardStyle]}>
+       <View style={styles.container}>
+         <View style={styles.rowOne}>
+           <Typography
+             useLineHeight
+             variant={Variant.titleLarge}
+             color={Colors.GREY_900}
+             numberOfLines={1}
+           >
+             {amount} {t(currencyName)} ({currencyCode})
+           </Typography>
+         </View>
+         <View style={styles.rowTwo}>
+           <Image source={{ uri: flagUri }} style={styles.flagImage} />
+           <Typography
+             useLineHeight
+             variant={Variant.bodyMedium}
+             color={Colors.GREY_800}
+           >
+             {countryName}
+           </Typography>
+         </View>
+       </View>
+     </Animated.View>
+   </Animated.View>
+ );
 
   return onDelete ? (
     <GestureDetector gesture={panGesture}>{cardContent}</GestureDetector>
