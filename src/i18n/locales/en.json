@@ -3,7 +3,7 @@
   "history.resetButton": "Reset",
   "history.noData": "No conversion history available.",
   "home.heading": "Converted values",
-  "home.noResults": "No results yet. Make sure exchange rates are added in Manage Currencies.",
+  "home.noResults": "No results yet. Convert some currency!",
   "manageCurrencies.title": "Manage Rates",
   "manageCurrencies.addRate": "Add Rate",
   "manageCurrencies.storedCurrencies": "Stored currencies",
