@@ -7,8 +7,9 @@ import {
   View,
 } from 'react-native';
 
+import { FlagIcon } from '@/src/assets';
 import { Colors } from '@/src/common/theme/colors';
-import { BASE_CURRENCY } from '@/src/common/types/constants';
+import { ScaledSize } from '@/src/common/theme/sizes';
 import { ICurrencyInfo } from '@/src/common/types/currency.type';
 import { useTranslation } from 'react-i18next';
 import OverlayModal from '../OverlayModal/OverlayModal';
@@ -38,6 +39,14 @@ const CurrencyInput: React.FC<IProps> = ({
   const handleSelect = (country: ICurrencyInfo) => {
     setSelected(country);
     setDropdownVisible(false);
+
+    // Notify parent with the new currency and current amount
+    if (value.trim() !== '') {
+      onCurrencyChange?.({
+        ...country,
+        amount: parseFloat(value) ?? 0,
+      });
+    }
   };
 
   const handleChangeText = (text: string) => {
@@ -70,10 +79,14 @@ const CurrencyInput: React.FC<IProps> = ({
             placeholderTextColor={Colors.GREY_700}
           />
           <TouchableOpacity onPress={() => setDropdownVisible(true)}>
-            <Image
-              source={{ uri: selected.flag ?? BASE_CURRENCY.flag }}
-              style={styles.flagImage}
-            />
+            {selected && selected.flag ? (
+              <Image source={{ uri: selected.flag }} style={styles.flagImage} />
+            ) : (
+              <FlagIcon
+                width={ScaledSize.SIZE_70}
+                height={ScaledSize.SIZE_30}
+              />
+            )}
           </TouchableOpacity>
         </View>
         {showHint && (

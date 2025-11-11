@@ -41,6 +41,7 @@ const HomeScreen: React.FC<RootNavigationProps<API_ROUTES.HOME>> = () => {
 
       if (currencyWithRate && currencyWithRate.amount !== undefined) {
         functions.convertCurrency(amount, selectedCurrency.code);
+        setAmount(0);
       } else {
         logger(`Exchange rate not set for ${selectedCurrency.code}`, 'warn');
       }
@@ -53,7 +54,7 @@ const HomeScreen: React.FC<RootNavigationProps<API_ROUTES.HOME>> = () => {
     <MainLayout barStyle="dark-content" backgroundColor={Colors.GREY_50}>
       <View style={styles.container}>
         <CurrencyInput
-          dropdownData={SUPPORTED_CURRENCIES}
+          dropdownData={state.currencies}
           onCurrencyChange={handleCurrencyChange}
         />
         <Button onPress={handleAction}>Convert</Button>

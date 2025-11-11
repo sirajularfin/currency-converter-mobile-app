@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 
     paddingTop: ScaledSize.SIZE_30,
     paddingHorizontal: ScaledSize.SIZE_20,
-    height: ScaledSize.SIZE_400,
+    maxHeight: ScaledSize.SIZE_400,
     width: '100%',
   },
   dropdownIndicator: {

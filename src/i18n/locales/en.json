@@ -8,7 +8,7 @@
   "manageCurrencies.addRate": "Add Rate",
   "manageCurrencies.storedCurrencies": "Stored currencies",
   "manageCurrencies.noCurrencies": "No currencies added yet. Add exchange rates above.",
-  "currency.notFound": "No currencies available.",
+  "currency.notFound": "No currencies available. Please add exchange rates.",
   "currency.inputPlaceholder": "Enter amount",
   "currency.inputHint": "1 US dollar equals how many {{currency}}?",
   "currency.USD": "US Dollar",
