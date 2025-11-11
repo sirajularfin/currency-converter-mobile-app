@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, View } from 'react-native';
+import { FlatList, Keyboard, View } from 'react-native';
 
 import MainLayout from '@/src/common/layouts/MainLayout';
 import { Colors } from '@/src/common/theme/colors';
+import { ScaledSize } from '@/src/common/theme/sizes';
 import {
   DEFAULT_VALUE_ZERO,
   SUPPORTED_CURRENCIES,
@@ -33,6 +34,7 @@ const HomeScreen: React.FC<RootNavigationProps<API_ROUTES.HOME>> = () => {
   };
 
   const handleAction = () => {
+    Keyboard.dismiss();
     if (amount > 0 && selectedCurrency) {
       const currencyWithRate = functions.getCurrency(selectedCurrency.code);
 
@@ -43,6 +45,8 @@ const HomeScreen: React.FC<RootNavigationProps<API_ROUTES.HOME>> = () => {
       }
     }
   };
+
+  const renderSeparator = () => <Separator height={ScaledSize.SIZE_50} />;
 
   return (
     <MainLayout barStyle="dark-content" backgroundColor={Colors.GREY_50}>
@@ -77,6 +81,7 @@ const HomeScreen: React.FC<RootNavigationProps<API_ROUTES.HOME>> = () => {
                 {t('home.noResults')}
               </Typography>
             }
+            ListFooterComponent={renderSeparator}
           />
         </View>
       </View>

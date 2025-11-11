@@ -18,6 +18,8 @@ const HistoryScreen: React.FC<RootNavigationProps<API_ROUTES.HISTORY>> = () => {
   const { t } = useTranslation();
   const { state, functions } = useCurrencyRate();
 
+  const renderSeparator = () => <Separator height={ScaledSize.SIZE_50} />;
+
   return (
     <MainLayout barStyle="dark-content" backgroundColor={Colors.GREY_50}>
       <View style={styles.container}>
@@ -46,6 +48,7 @@ const HistoryScreen: React.FC<RootNavigationProps<API_ROUTES.HISTORY>> = () => {
         <FlatList
           keyExtractor={(item, index) => `${index}_${item.code}_${item.amount}`}
           data={state.history}
+          showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
             <CurrencyCard
               amount={`${item?.amount ?? DEFAULT_VALUE_ZERO}`}
@@ -61,6 +64,7 @@ const HistoryScreen: React.FC<RootNavigationProps<API_ROUTES.HISTORY>> = () => {
               {t('history.noData')}
             </Typography>
           }
+          ListFooterComponent={renderSeparator}
         />
       </View>
     </MainLayout>

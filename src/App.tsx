@@ -1,4 +1,4 @@
-import { StrictMode, useEffect } from 'react';
+import { useEffect } from 'react';
 import RNBootSplash from 'react-native-bootsplash';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -13,15 +13,13 @@ function App() {
   }, []);
 
   return (
-    <StrictMode>
-      <GestureHandlerRootView>
-        <SafeAreaProvider>
-          <AppProviders>
-            <RootNavigation />
-          </AppProviders>
-        </SafeAreaProvider>
-      </GestureHandlerRootView>
-    </StrictMode>
+    <GestureHandlerRootView>
+      <SafeAreaProvider>
+        <AppProviders>
+          <RootNavigation />
+        </AppProviders>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
 

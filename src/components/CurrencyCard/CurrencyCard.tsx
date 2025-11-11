@@ -95,32 +95,37 @@ const CurrencyCard: React.FC<IProps> = ({
     };
   });
 
-  return (
-    <GestureDetector gesture={panGesture}>
-      <Animated.View style={[styles.card, animatedStyle]}>
-        <View style={styles.container}>
-          <View style={styles.rowOne}>
-            <Typography
-              useLineHeight
-              variant={Variant.titleLarge}
-              color={Colors.GREY_900}
-            >
-              {amount} {t(currencyName)} ({currencyCode})
-            </Typography>
-          </View>
-          <View style={styles.rowTwo}>
-            <Image source={{ uri: flagUri }} style={styles.flagImage} />
-            <Typography
-              useLineHeight
-              variant={Variant.bodyMedium}
-              color={Colors.GREY_800}
-            >
-              {countryName}
-            </Typography>
-          </View>
+  const cardContent = (
+    <Animated.View style={[styles.card, animatedStyle]}>
+      <View style={styles.container}>
+        <View style={styles.rowOne}>
+          <Typography
+            useLineHeight
+            variant={Variant.titleLarge}
+            color={Colors.GREY_900}
+            numberOfLines={1}
+          >
+            {amount} {t(currencyName)} ({currencyCode})
+          </Typography>
         </View>
-      </Animated.View>
-    </GestureDetector>
+        <View style={styles.rowTwo}>
+          <Image source={{ uri: flagUri }} style={styles.flagImage} />
+          <Typography
+            useLineHeight
+            variant={Variant.bodyMedium}
+            color={Colors.GREY_800}
+          >
+            {countryName}
+          </Typography>
+        </View>
+      </View>
+    </Animated.View>
+  );
+
+  return onDelete ? (
+    <GestureDetector gesture={panGesture}>{cardContent}</GestureDetector>
+  ) : (
+    cardContent
   );
 };
 

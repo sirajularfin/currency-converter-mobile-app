@@ -4,6 +4,7 @@ import { FlatList, View } from 'react-native';
 
 import MainLayout from '@/src/common/layouts/MainLayout';
 import { Colors } from '@/src/common/theme/colors';
+import { ScaledSize } from '@/src/common/theme/sizes';
 import { SUPPORTED_CURRENCIES } from '@/src/common/types/constants';
 import { ICurrencyInfo } from '@/src/common/types/currency.type';
 import Button from '@/src/components/Button/Button';
@@ -23,6 +24,8 @@ const ManageCurrenciesScreen: React.FC<
     useState<ICurrencyInfo | null>(null);
 
   const { state, functions } = useCurrencyRate();
+
+  const renderSeparator = () => <Separator height={ScaledSize.SIZE_50} />;
 
   return (
     <MainLayout barStyle="dark-content" backgroundColor={Colors.GREY_50}>
@@ -73,6 +76,7 @@ const ManageCurrenciesScreen: React.FC<
               {t('manageCurrencies.noCurrencies')}
             </Typography>
           }
+          ListFooterComponent={renderSeparator}
         />
       </View>
     </MainLayout>
